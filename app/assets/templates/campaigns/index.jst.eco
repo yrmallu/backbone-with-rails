@@ -1,0 +1,32 @@
+<div class="left-side-controls">
+  <h5><%= @campaigns.length %> campaigns</h5>
+  <a href="#campaigns/new" class="button">New Campaign</a>
+</div>
+<% if @campaigns.length: %>
+  <ul class="c-list">
+    <% for campaign in @campaigns: %>
+      <li class="campaign-item widget" data-campaign_id="<%= campaign.id %>">
+        <div class="clearfix cell-top">
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Brand:</th><td><%= campaign.get("brand_name") %></td>
+            </tr>
+            <tr>
+              <th>From:</th><td><%= campaign.get("start_from_date") %></td>
+            </tr>
+            <tr>
+              <th>To:</th><td> <%= campaign.get("end_date") %></td>
+            </tbody>
+         </table>
+        <div class="clearfix cell-bottom">
+          <a href="#campaigns/<%= campaign.id %>/edit" class="button edit-campaign">Edit</a>
+          <a href="#" class="button delete-campaign" data-campaign_id="<%= campaign.id %>">Stop</a>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else: %>
+  <h1><%= @campaigns %></h1>
+<% end %>
